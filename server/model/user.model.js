@@ -12,10 +12,10 @@ const userSchema = new mongoose.Schema({
         unique : true,
         validate : [validator.isEmail, "Please Enter Valid Email Address..."]
     },
-    phone: {
-        type : Number,
-        require : true,
-    },
+    // phone: {
+    //     type : Number,
+    //     require : true,
+    // },
     photo : {
         type : String,
         require : true,

@@ -1,23 +1,24 @@
 import express from "express"
 import dotenv from "dotenv"
 import { connectDB } from "./config/mongoDB.js"
+import {router} from "./routes/auth.route.js"
 
 
-// config dotenv for import evn  
 dotenv.config()
+const app = express()
+const port = process.env.PORT || 4001;
+
 
 // database connection 
 connectDB()
 
+// middileware 
+app.use(express.json())
 
 
-const app = express()
-const port = process.env.PORT || 4001;
 
-// root path create 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+// define routes
+app.use("/api/users", router )
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
