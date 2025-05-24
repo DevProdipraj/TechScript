@@ -3,29 +3,36 @@ import { User } from "../model/user.model.js";
 export const register = async (req, res) => {
   try {
     const { email, name, password, phone, education, role } = req.body;
+
+    // Validate input
     if (!email || !name || !password || !phone || !education || !role) {
-      return res.jeson({
+      return res.json({
         success: false,
-        message: "All Filed Are requird!!",
+        message: "All Fields Are Required!!",
       });
     }
-    const existingUser = await User.findOne({ email });
 
+    // Check for existing user
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.json({
         success: false,
-        message: "User All Ready Register...",
+        message: "User Already Registered...",
       });
     }
 
+
+    // Create and save user
     const newUser = new User({ email, name, password, phone, education, role });
     await newUser.save();
 
-    if (newUser) {
-      res.json({ success: true, message: "User Registered Successfully" });
-    }
+    res.json({
+      success: true,
+      message: "User Registered Successfully",
+    });
+
   } catch (error) {
-     return res.json({
+    return res.json({
       success: false,
       message: error.message,
     });
