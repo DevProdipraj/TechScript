@@ -2,6 +2,7 @@ import express from "express"
 import dotenv from "dotenv"
 import { connectDB } from "./config/mongoDB.js"
 import {router} from "./routes/auth.route.js"
+import {blogRouter} from "./routes/blog.route.js"
 import fileUpload from "express-fileupload"
 import cloudinary from "cloudinary"
 
@@ -24,6 +25,7 @@ app.use(fileUpload({
 
 // define routes
 app.use("/api/users", router )
+app.use("/api/blog", blogRouter)
 
 // cloudinary configure 
 cloudinary.config({ 

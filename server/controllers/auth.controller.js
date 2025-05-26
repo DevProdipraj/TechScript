@@ -1,10 +1,11 @@
-
 import { User } from "../model/user.model.js";
 import cloudinary from "cloudinary";
 import bcrypt from "bcrypt";
-import createTokenAndSaveCookies from "../jwt/authToken.js"
+import jwt from "jsonwebtoken";
+import createTokenAndSaveCookies from "../jwt/authToken.js";
 
-
+// USER Registation function
+// ==========================
 export const register = async (req, res) => {
   try {
     if (!req.files || Object.keys(req.files).length === 0) {
@@ -40,7 +41,9 @@ export const register = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const cloudinaryResponse = await cloudinary.uploader.upload(photo.tempFilePath);
+    const cloudinaryResponse = await cloudinary.uploader.upload(
+      photo.tempFilePath
+    );
     if (!cloudinaryResponse || cloudinaryResponse.error) {
       return res.status(500).json({
         success: false,
@@ -63,16 +66,110 @@ export const register = async (req, res) => {
 
     await newUser.save();
 
-    if(newUser){
-
-      createTokenAndSaveCookies(newUser._id, res)
+    if (newUser) {
+      const token = await createTokenAndSaveCookies(newUser._id, res);
+      // console.log(token)
       res.status(201).json({
-      success: true,
-      message: "User registered successfully.",
-      user: newUser,
-    });
+        success: true,
+        message: "User registered successfully.",
+        user: newUser,
+        token: token,
+      });
     }
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+// USER loging function
+// ====================
+
+
+export const login = async (req, res) => {
+  try {
+    const { email, password, role } = req.body;
+
+    if (!email || !password || !role) {
+      return res.status(400).json({
+        success: false,
+        message: "User Email, Password, and Role are required.",
+      });
+    }
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "User not found.",
+      });
+    }
+
+    if (user.role !== role) {
+      return res.status(403).json({
+        success: false,
+        message: "User role mismatch.",
+      });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid password.",
+      });
+    }
+
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY, {
+      expiresIn: "1d",
+    });
+
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: "Login successful",
+      token,
+      user,
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+
+// User Logout Function 
+// ===============
+export const logout = async (req, res) => {
+  try {
     
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
+    });
+
+    res.clearCookie("jwt", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
+    });
+
+    return res.json({
+      success: true,
+      message: "Logout Successful",
+    });
   } catch (error) {
     return res.status(500).json({
       success: false,
