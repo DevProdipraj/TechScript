@@ -68,7 +68,7 @@ export const register = async (req, res) => {
 
     if (newUser) {
       const token = await createTokenAndSaveCookies(newUser._id, res);
-      // console.log(token)
+      // console.log(`Sign Up Token: ${token}`);
       res.status(201).json({
         success: true,
         message: "User registered successfully.",
@@ -86,7 +86,6 @@ export const register = async (req, res) => {
 
 // USER loging function
 // ====================
-
 
 export const login = async (req, res) => {
   try {
@@ -125,7 +124,7 @@ export const login = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY, {
       expiresIn: "1d",
     });
-
+    // console.log(`Login Token: ${token}`);
     res.cookie("token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
@@ -139,7 +138,6 @@ export const login = async (req, res) => {
       token,
       user,
     });
-
   } catch (error) {
     return res.status(500).json({
       success: false,
@@ -148,12 +146,10 @@ export const login = async (req, res) => {
   }
 };
 
-
-// User Logout Function 
+// User Logout Function
 // ===============
 export const logout = async (req, res) => {
   try {
-    
     res.clearCookie("token", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",

@@ -5,6 +5,7 @@ import {router} from "./routes/auth.route.js"
 import {blogRouter} from "./routes/blog.route.js"
 import fileUpload from "express-fileupload"
 import cloudinary from "cloudinary"
+import cookieParser from "cookie-parser"
 
 
 dotenv.config()
@@ -17,6 +18,7 @@ connectDB()
 
 // middileware 
 app.use(express.json())
+app.use(cookieParser())
 
 app.use(fileUpload({
     useTempFiles : true,
