@@ -173,3 +173,17 @@ export const logout = async (req, res) => {
     });
   }
 };
+
+// Get user Profile Data
+// =====================
+export const getMyProfile = async (req, res) => {
+  const user = await req.user;
+  res.status(200).json({ user });
+};
+
+// Get user Profile Data
+// =====================
+export const getAdmins = async (req, res) => {
+  const admins = await User.find({ role: "admin" });
+  res.status(200).json({ admins });
+};
