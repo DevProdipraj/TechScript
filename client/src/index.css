@@ -1,7 +1,18 @@
 @import "tailwindcss";
 
+/* assign custom color variable  */
+@theme{
+  --color-primary: #00D5FF;
+  --color-secondary: #00A8CC;
+  --color-neutral: #edededd9;
+  --color-dark: #1A1A1A;
+  --color-primary-hover: #00BDE6;
+  --color-secondary-hover: #0088AA  
+}
+
  /* container configure  */
   @utility container {
   margin-inline: auto;
   padding-inline: 2rem;
 }
+
