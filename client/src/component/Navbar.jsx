@@ -1,72 +1,88 @@
 import React, { useState } from "react";
- 
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const { blog } = useAuth();
+  console.log(blog);
+
   return (
     <>
-      <div className="bg-neutral text-primary">
+      <div className="bg-neutral sticky top-0    shadow-lg ">
         <div className="container py-4 flex items-center justify-between ">
           <div className="">
-            <img src='./logo.png' alt="Brand Icon" />
+            <Link to="/">
+              <img
+                className="h-auto w-[75%]"
+                src="./logo.png"
+                alt="Brand Icon"
+              />
+            </Link>
           </div>
           <div className="hidden md:block">
             <ul className="flex items-center sm:gap-2 md:gap-4 lg:gap-10">
               <li>
-                <a
-                  className="text-xl font-semibold text-primary hover:underline hover:text-secondary-hover underline-offset-6 transition-all duration-400"
+                <Link
+                  to=""
+                  className="text-md font-semibold text-secondary hover:underline hover:text-primary-hover underline-offset-6 transition-all duration-500"
                   href="#"
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  className="text-xl font-semibold text-primary hover:underline hover:text-secondary-hover underline-offset-6 transition-all duration-400"
-                  href="#"
-                >
-                  Services
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-xl font-semibold text-primary hover:underline hover:text-secondary-hover underline-offset-6 transition-all duration-400"
-                  href="#"
-                >
-                  Project
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-xl font-semibold text-primary hover:underline hover:text-secondary-hover underline-offset-6 transition-all duration-400"
-                  href="#"
-                >
-                  About
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-xl font-semibold text-primary hover:underline hover:text-secondary-hover underline-offset-6 transition-all duration-400"
+                <Link
+                  to="blog"
+                  className="text-md font-semibold text-secondary hover:underline hover:text-primary-hover underline-offset-6 transition-all duration-500"
                   href="#"
                 >
                   Blog
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  className="text-xl font-semibold text-primary hover:underline hover:text-secondary-hover underline-offset-6 transition-all duration-400"
+                <Link
+                  to="creators"
+                  className="text-md font-semibold text-secondary hover:underline hover:text-primary-hover underline-offset-6 transition-all duration-500"
+                  href="#"
+                >
+                  Creators
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="about"
+                  className="text-md font-semibold text-secondary hover:underline hover:text-primary-hover underline-offset-6 transition-all duration-500"
+                  href="#"
+                >
+                  About
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/contact"
+                  className="text-md font-semibold text-secondary hover:underline hover:text-primary-hover underline-offset-6 transition-all duration-500"
                   href="#"
                 >
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
 
-          <div className="hidden md:block">
-            <button className="text-black font-semibold bg-white py-2 px-6 rounded-full text-xl hover:bg-gray-300 cursor-pointer transition-all duration-400">
-              Login
-            </button>
+          <div className="hidden md:block space-x-2">
+            <Link to="/login">
+              <button className="font-semibold  py-1.5 rounded-md text-md bg-primary w-[90px] text-neutral cursor-pointer transition-all duration-400 hover:bg-primary-hover">
+                Login
+              </button>
+            </Link>
+            <Link to="/register">
+              <button className="font-semibold  py-1.5 rounded-md text-md bg-primary w-[90px] text-neutral cursor-pointer transition-all duration-400 hover:bg-primary-hover">
+                Register
+              </button>
+            </Link>
           </div>
           <div
             className="md:hidden cursor-pointer"
@@ -96,30 +112,67 @@ const Navbar = () => {
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <ul>
-          <li className="py-2">
-            <a href="#">Home</a>
+        <ul className="">
+          <li>
+             <Link to="/">
+              <img
+                className="h-auto w-[100%]"
+                src="./logo.png"
+                alt="Brand Icon"
+              />
+            </Link>
           </li>
-          <li className="py-2">
-            <a href="#">Services</a>
+          <li>
+            <Link
+              to=""
+              className="text-md font-semibold text-secondary hover:underline hover:text-primary-hover underline-offset-6 transition-all duration-500"
+              href="#"
+            >
+              Home
+            </Link>
           </li>
-          <li className="py-2">
-            <a href="#">Project</a>
+          <li>
+            <Link
+              to="blog"
+              className="text-md font-semibold text-secondary hover:underline hover:text-primary-hover underline-offset-6 transition-all duration-500"
+              href="#"
+            >
+              Blog
+            </Link>
           </li>
-          <li className="py-2">
-            <a href="#">About</a>
+          <li>
+            <Link
+              to="creators"
+              className="text-md font-semibold text-secondary hover:underline hover:text-primary-hover underline-offset-6 transition-all duration-500"
+              href="#"
+            >
+              Creators
+            </Link>
           </li>
-          <li className="py-2">
-            <a href="#">Blog</a>
+          <li>
+            <Link
+              to="about"
+              className="text-md font-semibold text-secondary hover:underline hover:text-primary-hover underline-offset-6 transition-all duration-500"
+              href="#"
+            >
+              About
+            </Link>
           </li>
-          <li className="py-2">
-            <a href="#">Contact</a>
+
+          <li>
+            <Link
+              to="/contact"
+              className="text-md font-semibold text-secondary hover:underline hover:text-primary-hover underline-offset-6 transition-all duration-500"
+              href="#"
+            >
+              Contact
+            </Link>
           </li>
-          <a href="#">
-            <button className="text-white font-semibold bg-cyan-600 py-1 px-6 rounded-full text-xl hover:bg-gray-300 cursor-pointer transition-all duration-400 my-3">
+          <Link to="" href="#">
+            <button className="text-neutral font-semibold bg-primary py-1 px-6 rounded-full text-md hover:bg-gray-300 cursor-pointer transition-all duration-400 my-3">
               Login
             </button>
-          </a>
+          </Link>
         </ul>
       </div>
     </>

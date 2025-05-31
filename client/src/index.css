@@ -1,15 +1,30 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Poppins:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Poppins:wght@300;400&family=Roboto:wght@400;700&display=swap');
 @import "tailwindcss";
 
 /* assign custom color variable  */
 @theme{
-  --color-primary: #00D5FF;
-  --color-secondary: #00A8CC;
-  --color-neutral: #edededd9;
-  --color-dark: #1A1A1A;
-  --color-primary-hover: #00BDE6;
-  --color-secondary-hover: #0088AA  
+  --color-primary: #0948B3;
+  --color-secondary: #091134;
+  --color-neutral: #ffffff;
+  --color-dark: #F2F4F8;
+  --color-primary-hover: #053094;
+  --color-secondary-hover: #05246c;  
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f8ff;
+   
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Roboto', sans-serif;
 }
 
+span, p{
+    font-family: 'Fredoka', sans-serif;
+}
  /* container configure  */
   @utility container {
   margin-inline: auto;
