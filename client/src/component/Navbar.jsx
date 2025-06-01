@@ -72,17 +72,19 @@ const Navbar = () => {
             </ul>
           </div>
 
-          <div className="hidden md:block space-x-2">
+          <div className="hidden md:block ms-2">
+            <div className="flex items-center justify-center space-x-2">
             <Link to="/login">
-              <button className="font-semibold  py-1.5 rounded-md text-md bg-primary w-[90px] text-neutral cursor-pointer transition-all duration-400 hover:bg-primary-hover">
+              <button className="  py-1.5 rounded-md text-md bg-primary w-[90px] text-neutral cursor-pointer transition-all duration-400 hover:bg-primary-hover">
                 Login
               </button>
             </Link>
             <Link to="/register">
-              <button className="font-semibold  py-1.5 rounded-md text-md bg-primary w-[90px] text-neutral cursor-pointer transition-all duration-400 hover:bg-primary-hover">
+              <button className=" py-1.5 rounded-md text-md bg-primary w-[90px] text-neutral cursor-pointer transition-all duration-400 hover:bg-primary-hover">
                 Register
               </button>
             </Link>
+            </div>
           </div>
           <div
             className="md:hidden cursor-pointer"
