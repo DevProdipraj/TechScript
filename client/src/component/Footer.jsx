@@ -8,7 +8,7 @@ import { FaCopyright } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div className="bg-primary text-neutral">
+    <div className="bg-secondary text-neutral">
       <div className="container py-5 lg:py-10 flex flex-col sm:flex-row   justify-between space-x-4">
         {/* about box */}
         <div className="w-full  md:w-1/4 ">
