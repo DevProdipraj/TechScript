@@ -5,11 +5,38 @@ const Register = () => {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [phone, setPhone] = useState();
-  const [passWord, setPassWord] = useState();
+  const [password, setPassWord] = useState();
   const [role, setRole] = useState();
   const [education, setEducation] = useState();
   const [photo, setPhoto] = useState();
   const [photoPreview, setPhotoPreview] = useState();
+
+  const changePhotoHandeler = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setPhotoPreview(reader.result);
+      setPhoto(file);
+    };
+  };
+
+  const handleRegister = async () => {
+    const formData = new formData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("password", password);
+    formData.append("role", role);
+    formData.append("education", education);
+    formData.append("photo", photo);
+
+    try {
+      console.log(object)
+    } catch (error) {
+      console.log(error.message || "Please Fill All Filed!!")
+    }
+  };
 
   return (
     <div>
@@ -22,13 +49,18 @@ const Register = () => {
               </Link>
             </div>
             <h1 className="text-xl font-semibold mb-6">Register</h1>
-            <select value={role} className="w-full p-2 mb-4 border rounded-md">
+            <select
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              className="w-full p-2 mb-4 border rounded-md"
+            >
               <option value="">Select Role</option>
               <option value="user">user</option>
               <option value="admin">admin</option>
             </select>
             <div className="mb-4">
               <input
+                onChange={(e) => setName(e.target.value)}
                 type="text"
                 placeholder="Your Name"
                 value={name}
@@ -37,6 +69,7 @@ const Register = () => {
             </div>
             <div className="mb-4">
               <input
+                onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 placeholder="Your Email Address"
                 value={email}
@@ -45,6 +78,7 @@ const Register = () => {
             </div>
             <div className="mb-4">
               <input
+                onChange={(e) => setPhone(e.target.value)}
                 type="number"
                 placeholder="Your Phone Number"
                 value={phone}
@@ -53,14 +87,19 @@ const Register = () => {
             </div>
             <div className="mb-4">
               <input
+                onChange={(e) => setPassWord(e.target.value)}
                 type="password"
                 placeholder="Your Password"
-                value={passWord}
+                value={password}
                 className="w-full p-2  border rounded-md"
               />
             </div>
-            <select className="w-full p-2 mb-4 border rounded-md">
-              <option value={education}>Select Your Education</option>
+            <select
+              value={education}
+              onChange={(e) => setEducation(e.target.value)}
+              className="w-full p-2 mb-4 border rounded-md"
+            >
+              <option value="">Select Your Education</option>
               <option value="BBA ">BBA</option>
               <option value="MBA ">MBA</option>
               <option value="CSE ">CSE</option>
@@ -68,9 +107,13 @@ const Register = () => {
             </select>
             <div className="flex items-center justify-between mb-4">
               <div className="photo w-20 h-20 mr-4">
-                <img   src="#" alt="photo" />
+                <img
+                  src={photoPreview ? `${photoPreview}` : "photo"}
+                  alt="photo"
+                />
               </div>
               <input
+                onChange={changePhotoHandeler}
                 type="file"
                 className="w-3/6 p-2  border rounded-md cursor-pointer"
               />
