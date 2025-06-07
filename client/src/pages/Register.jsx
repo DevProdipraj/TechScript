@@ -1,7 +1,9 @@
+import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Register = () => {
+
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [phone, setPhone] = useState();
@@ -11,6 +13,8 @@ const Register = () => {
   const [photo, setPhoto] = useState();
   const [photoPreview, setPhotoPreview] = useState();
 
+
+// set photo preview 
   const changePhotoHandeler = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -21,7 +25,9 @@ const Register = () => {
     };
   };
 
-  const handleRegister = async () => {
+// user register function 
+  const handleRegister = async (e) => {
+    e.prevenDefault();
     const formData = new formData();
     formData.append("name", name);
     formData.append("email", email);
@@ -32,11 +38,21 @@ const Register = () => {
     formData.append("photo", photo);
 
     try {
-      console.log(object)
+      const {data} = await axios.post("http://localhost:3000/api/users/register", formData, {
+        withCredentials : true,
+        headers : {
+          "Content-Type" : "multipart/form-data",
+        },
+      } )
+      console.log(data)
     } catch (error) {
       console.log(error.message || "Please Fill All Filed!!")
     }
   };
+
+
+
+
 
   return (
     <div>
@@ -127,6 +143,7 @@ const Register = () => {
             </p>
             <button
               type="submit"
+              onClick={handleRegister}
               className="w-full cursor-pointer p-2 bg-primary hover:bg-primary-hover duration-300 rounded-md text-white"
             >
               Register
