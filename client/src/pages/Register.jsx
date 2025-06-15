@@ -36,6 +36,13 @@ const Register = () => {
     formData.append("role", role);
     formData.append("education", education);
     formData.append("photo", photo);
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("password", password);
+    formData.append("role", role);
+    formData.append("education", education);
+    formData.append("photo", photo);
 
     try {
       const {data} = await axios.post("http://localhost:3000/api/users/register", formData, {
