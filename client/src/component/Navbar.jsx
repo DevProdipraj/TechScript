@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+// import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { blog } = useAuth();
-  console.log(blog);
+  // const { blog } = useAuth();
+  // console.log(blog);
 
   return (
     <>

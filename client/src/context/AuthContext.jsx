@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
             withCredentials: true
           }
         );
-        console.log(response.data);
+        // console.log(response.data);
         setBlog(response.data);
       } catch (error) {
         console.error("Error fetching blogs:", error.message);

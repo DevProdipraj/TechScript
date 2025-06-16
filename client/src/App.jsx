@@ -10,14 +10,15 @@ import Dashbord from './pages/Dashbord'
 import Navbar from './component/Navbar'
 import Footer from './component/Footer'
 import Creators from './pages/Creators'
-import { useAuth } from './context/AuthContext'
+ import { ToastContainer,  } from 'react-toastify';
+// import { useAuth } from './context/AuthContext'
 
 const App = () => {
   const location = useLocation();
   const hideLayoutPaths = [ '/dashbord'];
   const shouldHideLayout = hideLayoutPaths.includes(location.pathname.toLowerCase());
-  const {blog} = useAuth();
-  console.log(blog);
+  // const {blog} = useAuth();
+  // console.log(blog);
   return (
     <div>
       {!shouldHideLayout && <Navbar />}
@@ -30,9 +31,10 @@ const App = () => {
       <Route path='/login' element={<Login/>}/>
       <Route path='/register' element={<Register/>}/>
       <Route path='/dashbord' element={<Dashbord/>}/>
-
+     
     </Routes>
     {!shouldHideLayout && <Footer/> }
+    <ToastContainer />
     </div>
   )
 }
