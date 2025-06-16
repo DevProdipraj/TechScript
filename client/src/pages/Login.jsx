@@ -29,8 +29,8 @@ const Login = () => {
       setPassWord("");
       setRole("");
     } catch (error) {
-      console.log(error);
-       toast.error(response.data || "All Filds Are required !!" );
+      // console.log(error);
+       toast.error("All Filds Are required !!" || error.message  );
     }
   };
 
