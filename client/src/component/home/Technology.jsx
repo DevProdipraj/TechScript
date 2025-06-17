@@ -1,18 +1,18 @@
 import React from "react";
 import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
- 
- 
 
-export const HeroArea = () => {
+const Technology = () => {
   const { blogs } = useAuth();
-
+  // console.log(blogs)
+  const TechlonogyBlog = blogs?.filter((blogs) => blogs.category === "Technology");
+  console.log(TechlonogyBlog);
   return (
     <div className="container mx-auto px-0 py-10 ">
-      <h1 className="text-2xl font-semibold py-10">Latest  </h1>
-      {blogs && blogs.length > 0 ? (
+      <h1 className="text-2xl font-semibold py-10">Technology </h1>
+      {TechlonogyBlog && TechlonogyBlog.length > 0 ? (
         <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1  gap-6">
-          {blogs.slice(-4).map((data) => (
+          {TechlonogyBlog.slice(-4).map((data) => (
             <Link to={`/`} key={data._id}>
               <div className="relative bg-neutral rounded-xl overflow-hidden shadow-lg group transition transform hover:scale-105 duration-300">
                 <div className=" ">
@@ -48,19 +48,22 @@ export const HeroArea = () => {
                 </div>
               </div>
             </Link>
-            
           ))}
         </div>
       ) : (
         <h2 className="mt-4 text-lg text-gray-700 font-medium">
-          Currently, there are no blogs categorized under Leatest.
+          Currently, there are no blogs categorized under Digital.
         </h2>
       )}
-      <div className="text-right py-5">
-           <Link to={"/latest"}>
-             <button className="text-neutral font-semibold bg-primary py-2 px-6 rounded-md text-md   cursor-pointer transition-all duration-400 my-3 hover:bg-primary-hover">View All Blogs</button>
-           </Link>
-           </div>
+       <div className="text-right py-5">
+              <Link to={"/technology"}>
+                <button className="text-neutral font-semibold bg-primary py-2 px-6 rounded-md text-md   cursor-pointer transition-all duration-400 my-3 hover:bg-primary-hover">
+                  View All Blogs
+                </button>
+              </Link>
+            </div>
     </div>
   );
 };
+
+export default Technology;

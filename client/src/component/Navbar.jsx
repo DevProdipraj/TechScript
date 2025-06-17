@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // const { blog } = useAuth();
-  // console.log(blog);
+  // const { blogs } = useAuth();
+  // console.log(blogs);
 
   return (
     <>
-      <div className="bg-neutral sticky top-0    shadow-lg ">
+      <div className="bg-neutral sticky top-0  z-40  shadow-lg ">
         <div className="container py-4 flex items-center justify-between ">
           <div className="">
             <Link to="/">
@@ -110,7 +110,7 @@ const Navbar = () => {
       </div>
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className={`bg-gray-300 h-screen w-[60%] sm:w-[40%] md:hidden top-0 fixed px-8 pt-10 transition-transform duration-500 ease-in-out transform ${
+        className={`bg-gray-300 h-screen w-[60%] sm:w-[40%] md:hidden top-0 fixed px-8 pt-10 transition-transform duration-500 ease-in-out transform z-50 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -170,7 +170,7 @@ const Navbar = () => {
               Contact
             </Link>
           </li>
-          <Link to="" href="#">
+          <Link to="/login" href="#">
             <button className="text-neutral font-semibold bg-primary py-1 px-6 rounded-full text-md hover:bg-gray-300 cursor-pointer transition-all duration-400 my-3">
               Login
             </button>

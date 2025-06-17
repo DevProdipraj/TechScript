@@ -24,7 +24,7 @@ const App = () => {
       {!shouldHideLayout && <Navbar />}
     <Routes>
       <Route path='/' element={<Home/>}/>
-      <Route path='/Blog' element={<Blog/>}/>
+      <Route path='/blog' element={<Blog/>}/>
       <Route path='/creators' element={<Creators/>}/>
       <Route path='/about' element={<About/>}/>
       <Route path='/contact' element={<Contact/>}/>

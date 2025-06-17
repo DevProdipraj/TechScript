@@ -5,7 +5,7 @@ import axios from "axios";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [blog, setBlog] = useState([]);
+  const [blogs, setBlog] = useState([]);
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ blog }}>
+    <AuthContext.Provider value={{ blogs }}>
       {children}
     </AuthContext.Provider>
   );
