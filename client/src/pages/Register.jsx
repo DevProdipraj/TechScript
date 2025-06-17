@@ -94,8 +94,9 @@ const Register = () => {
                 type="text"
                 placeholder="Your Name"
                 value={name}
+                 
                 required
-                className="w-full p-2  border rounded-md"
+                className="w-full p-2  border rounded-md capitalize"
               />
             </div>
             <div className="mb-4">

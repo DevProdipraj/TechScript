@@ -1,15 +1,13 @@
 import React from "react";
 import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
- 
- 
 
 export const HeroArea = () => {
   const { blogs } = useAuth();
 
   return (
-    <div className="container mx-auto px-0 py-10 ">
-      <h1 className="text-2xl font-semibold py-10">Latest  </h1>
+    <div className="container mx-auto px-0 py-5 lg:mt-10 ">
+      <h1 className="text-2xl font-semibold py-5">Latest Blog Posts</h1>
       {blogs && blogs.length > 0 ? (
         <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1  gap-6">
           {blogs.slice(-4).map((data) => (
@@ -48,7 +46,6 @@ export const HeroArea = () => {
                 </div>
               </div>
             </Link>
-            
           ))}
         </div>
       ) : (
@@ -57,10 +54,12 @@ export const HeroArea = () => {
         </h2>
       )}
       <div className="text-right py-5">
-           <Link to={"/latest"}>
-             <button className="text-neutral font-semibold bg-primary py-2 px-6 rounded-md text-md   cursor-pointer transition-all duration-400 my-3 hover:bg-primary-hover">View All Blogs</button>
-           </Link>
-           </div>
+        <Link to={"/blog"}>
+          <button className="text-neutral font-semibold bg-primary py-2 px-6 rounded-md text-md   cursor-pointer transition-all duration-400 my-3 hover:bg-primary-hover">
+            View All Blogs
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };

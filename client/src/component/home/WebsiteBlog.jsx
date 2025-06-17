@@ -8,8 +8,8 @@ const WebsiteBlog = () => {
   const websiteBlog = blogs?.filter((blogs) => blogs.category === "Website");
   console.log(websiteBlog);
   return (
-    <div className="container mx-auto px-0 py-10 ">
-      <h1 className="text-2xl font-semibold py-10">Website </h1>
+    <div className="container mx-auto px-0 py-5 ">
+      <h1 className="text-2xl font-semibold py-5">Trending <strong>Website</strong> Strategies </h1>
       {websiteBlog && websiteBlog.length > 0 ? (
         <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1  gap-6">
           {websiteBlog.slice(-4).map((data) => (

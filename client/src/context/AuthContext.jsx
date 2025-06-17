@@ -6,7 +6,10 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [blogs, setBlog] = useState([]);
+  const [admins, setAdmins] = useState([]);
 
+
+  // fetchBlog data 
   useEffect(() => {
     const fetchBlog = async () => {
       try {
@@ -26,8 +29,28 @@ export const AuthProvider = ({ children }) => {
     fetchBlog();
   }, []);
 
+  // fetchAdmin data 
+  useEffect(() => {
+    const fetchAdmin = async ()  => {
+      try {
+        const response = await axios.get(
+           "http://localhost:3000/api/users/admins",  
+          {
+            withCredentials: true
+          }
+        )
+        console.log(response.data.admins)
+        setAdmins(response.data.admins)
+      } catch (error) {
+        console.error(error.message)
+      }
+    }
+    fetchAdmin()
+  }, [])
+
+
   return (
-    <AuthContext.Provider value={{ blogs }}>
+    <AuthContext.Provider value={{ blogs, admins }}>
       {children}
     </AuthContext.Provider>
   );

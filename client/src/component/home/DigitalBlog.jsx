@@ -8,8 +8,10 @@ const DigitalBlog = () => {
   const DigitalBlog = blogs?.filter((blogs) => blogs.category === "Digital");
   console.log(DigitalBlog);
   return (
-    <div className="container mx-auto px-0 py-10 ">
-      <h1 className="text-2xl font-semibold py-10">Digital </h1>
+    <div className="container mx-auto px-0 py-5 ">
+      <h1 className="text-2xl font-semibold py-5">
+      Top <strong>Digital</strong> Innovation
+      </h1>
       {DigitalBlog && DigitalBlog.length > 0 ? (
         <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1  gap-6">
           {DigitalBlog.slice(-4).map((data) => (
@@ -56,7 +58,7 @@ const DigitalBlog = () => {
         </h2>
       )}
       <div className="text-right py-5">
-        <Link to={"/degital"}>
+        <Link to={"/digital"}>
           <button className="text-neutral font-semibold bg-primary py-2 px-6 rounded-md text-md   cursor-pointer transition-all duration-400 my-3 hover:bg-primary-hover">
             View All Blogs
           </button>

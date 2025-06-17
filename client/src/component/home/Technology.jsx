@@ -5,11 +5,16 @@ import { Link } from "react-router-dom";
 const Technology = () => {
   const { blogs } = useAuth();
   // console.log(blogs)
-  const TechlonogyBlog = blogs?.filter((blogs) => blogs.category === "Technology");
+  const TechlonogyBlog = blogs?.filter(
+    (blogs) => blogs.category === "Technology"
+  );
   console.log(TechlonogyBlog);
   return (
-    <div className="container mx-auto px-0 py-10 ">
-      <h1 className="text-2xl font-semibold py-10">Technology </h1>
+    <div className="container mx-auto px-0 py-5 ">
+      <h1 className="text-2xl font-semibold py-5">
+        Top <strong>Technology</strong> Blog 
+      </h1>
+
       {TechlonogyBlog && TechlonogyBlog.length > 0 ? (
         <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1  gap-6">
           {TechlonogyBlog.slice(-4).map((data) => (
@@ -55,13 +60,13 @@ const Technology = () => {
           Currently, there are no blogs categorized under Digital.
         </h2>
       )}
-       <div className="text-right py-5">
-              <Link to={"/technology"}>
-                <button className="text-neutral font-semibold bg-primary py-2 px-6 rounded-md text-md   cursor-pointer transition-all duration-400 my-3 hover:bg-primary-hover">
-                  View All Blogs
-                </button>
-              </Link>
-            </div>
+      <div className="text-right py-5">
+        <Link to={"/technology"}>
+          <button className="text-neutral font-semibold bg-primary py-2 px-6 rounded-md text-md   cursor-pointer transition-all duration-400 my-3 hover:bg-primary-hover">
+            View All Blogs
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };

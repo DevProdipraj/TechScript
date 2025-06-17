@@ -6,10 +6,12 @@ const AiBlog = () => {
   const { blogs } = useAuth();
   // console.log(blogs)
   const AiBlogs = blogs?.filter((blogs) => blogs.category === "Ai");
-  console.log(AiBlogs);
+  // console.log(AiBlogs);
   return (
-    <div className="container mx-auto px-0 py-10 ">
-      <h1 className="text-2xl font-semibold py-10">AI </h1>
+    <div className="container mx-auto px-0 py-5 ">
+      <h1 className="text-2xl font-semibold py-5">
+        Top <strong>AI</strong> Articles  
+      </h1>
 
       {AiBlogs && AiBlogs.length > 0 ? (
         <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1  gap-6">
