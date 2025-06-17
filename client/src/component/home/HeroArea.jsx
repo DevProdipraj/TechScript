@@ -6,7 +6,7 @@ export const HeroArea = () => {
   const { blogs } = useAuth();
 
   return (
-    <div className="container mx-auto px-0 py-5 lg:mt-10 ">
+    <div className="container mx-auto px-0 py-5 mt-16 lg:mt-26 ">
       <h1 className="text-2xl font-semibold py-5">Latest Blog Posts</h1>
       {blogs && blogs.length > 0 ? (
         <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1  gap-6">
