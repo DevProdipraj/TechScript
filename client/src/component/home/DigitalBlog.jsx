@@ -6,7 +6,7 @@ const DigitalBlog = () => {
   const { blogs } = useAuth();
   // console.log(blogs)
   const DigitalBlog = blogs?.filter((blogs) => blogs.category === "Digital");
-  console.log(DigitalBlog);
+  // console.log(DigitalBlog);
   return (
     <div className="container mx-auto px-0 py-5 ">
       <h1 className="text-2xl font-semibold py-5">

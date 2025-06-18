@@ -69,20 +69,20 @@ const Register = () => {
 
   return (
     <div>
-      <div className="  flex items-center justify-center bg-gray-100 py-8 lg:py-16">
+      <div className="  flex items-center justify-center bg-gray-100 py-8 lg:py-16 mt-22">
         <div className="w-full min-w-2/7 max-w-max bg-white shadow-md rounded-lg p-8">
           <form>
-            <div className="font-semibold text-xl items-center text-center">
+            {/* <div className="font-semibold text-xl items-center text-center">
               <Link>
                 <img className="w-3/6 m-auto" src="./logo.png" alt="" />
               </Link>
-            </div>
+            </div> */}
             <h1 className="text-xl font-semibold mb-6">Register</h1>
             <select
               value={role}
               required
               onChange={(e) => setRole(e.target.value)}
-              className="w-full p-2 mb-4 border rounded-md"
+              className="w-full p-2 mb-4 border rounded-md lowercase"
             >
               <option value="">Select Role</option>
               <option value="user">user</option>

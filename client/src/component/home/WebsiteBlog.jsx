@@ -6,7 +6,7 @@ const WebsiteBlog = () => {
   const { blogs } = useAuth();
   // console.log(blogs)
   const websiteBlog = blogs?.filter((blogs) => blogs.category === "Website");
-  console.log(websiteBlog);
+  // console.log(websiteBlog);
   return (
     <div className="container mx-auto px-0 py-5 ">
       <h1 className="text-2xl font-semibold py-5">Trending <strong>Website</strong> Strategies </h1>

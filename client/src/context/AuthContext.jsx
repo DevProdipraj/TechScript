@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
             withCredentials: true
           }
         )
-        console.log(response.data.admins)
+        // console.log(response.data.admins)
         setAdmins(response.data.admins)
       } catch (error) {
         console.error(error.message)

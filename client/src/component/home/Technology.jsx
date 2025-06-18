@@ -8,7 +8,7 @@ const Technology = () => {
   const TechlonogyBlog = blogs?.filter(
     (blogs) => blogs.category === "Technology"
   );
-  console.log(TechlonogyBlog);
+  // console.log(TechlonogyBlog);
   return (
     <div className="container mx-auto px-0 py-5 ">
       <h1 className="text-2xl font-semibold py-5">

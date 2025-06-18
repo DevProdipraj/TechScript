@@ -1,16 +1,17 @@
 import React from "react";
-
+import { TbWriting } from "react-icons/tb";
+import { FaBookReader } from "react-icons/fa";
 const About = () => {
   return (
-    <div className="container mx-auto px-4 py-16">
+    <div className="container mx-auto px-4 py-16 mt-22">
       <h1 className="text-4xl font-bold text-center mb-6">About Our Blog</h1>
       <p className="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-12">
         Welcome to our blog platform — your destination for diverse stories, ideas, and insights. Whether you're here to read or contribute, we've built this platform for everyone.
       </p>
 
       <div className="grid md:grid-cols-2 gap-10">
-        <div className="p-6 bg-white rounded-lg shadow">
-          <h2 className="text-2xl font-semibold mb-4 text-primary">📖 For Readers</h2>
+        <div className="p-6 bg-white rounded-lg shadow"> 
+          <h2 className="text-2xl font-semibold mb-4 text-primary flex items-center"><FaBookReader className="mr-3 text-4xl" /> For Readers</h2>
           <p className="text-gray-600">
             Anyone can freely explore and read blogs across various topics.
             From tech and travel to lifestyle and opinions — our platform
@@ -19,7 +20,7 @@ const About = () => {
         </div>
 
         <div className="p-6 bg-white rounded-lg shadow">
-          <h2 className="text-2xl font-semibold mb-4 text-primary">✍️ For Admins</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-primary flex items-center"><TbWriting className="mr-3 text-4xl" /> For Admins</h2>
           <p className="text-gray-600">
             Admin users have the ability to create, manage, and publish blogs.
             We believe in empowering content creators with the tools to share

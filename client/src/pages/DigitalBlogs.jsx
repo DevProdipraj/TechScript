@@ -1,16 +1,20 @@
 import React from "react";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
-export const HeroArea = () => {
+const DigitalBlogs = () => {
   const { blogs } = useAuth();
-
+  // console.log(blogs)
+  const DigitalBlog = blogs?.filter((blogs) => blogs.category === "Digital");
+  // console.log(DigitalBlog);
   return (
-    <div className="container mx-auto px-0 py-5 mt-16 lg:mt-26 ">
-      <h1 className="text-2xl font-semibold py-5">Latest Blog Posts</h1>
-      {blogs && blogs.length > 0 ? (
+    <div className="container mx-auto px-5 py-10 lg:py-16 mt-22 ">
+      <h1 className="text-2xl font-semibold py-5">
+      Top <strong>Digital</strong> Innovation
+      </h1>
+      {DigitalBlog && DigitalBlog.length > 0 ? (
         <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1  gap-6">
-          {blogs.slice(-4).map((data) => (
+          {DigitalBlog.map((data) => (
             <Link to={`/`} key={data._id}>
               <div className="relative bg-neutral rounded-xl overflow-hidden shadow-lg group transition transform hover:scale-105 duration-300">
                 <div className=" ">
@@ -50,16 +54,12 @@ export const HeroArea = () => {
         </div>
       ) : (
         <h2 className="mt-4 text-lg text-gray-700 font-medium">
-          Currently, there are no blogs categorized under Leatest.
+          Currently, there are no blogs categorized under Digital.
         </h2>
       )}
-      {/* <div className="text-right py-5">
-        <Link to={"/blog"}>
-          <button className="text-neutral font-semibold bg-primary py-2 px-6 rounded-md text-md   cursor-pointer transition-all duration-400 my-3 hover:bg-primary-hover">
-            View All Blogs
-          </button>
-        </Link>
-      </div> */}
+      
     </div>
   );
 };
+
+export default DigitalBlogs;
