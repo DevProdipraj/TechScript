@@ -1,4 +1,4 @@
-// import React from "react";
+// import React, { useState } from "react";
 // import { FaPhoneAlt } from "react-icons/fa";
 // import { MdEmail } from "react-icons/md";
 // import { FaLocationDot } from "react-icons/fa6";
@@ -7,8 +7,11 @@
 // import { useForm } from "react-hook-form";
 // import axios from "axios";
 // import { toast } from "react-toastify";
+// import ReCAPTCHA from "react-google-recaptcha";
 
 // const Contact = () => {
+//   const [capVal, setCapVal] = useState();
+
 //   const {
 //     register,
 //     handleSubmit,
@@ -23,6 +26,7 @@
 //       email: data.email,
 //       message: data.message,
 //     };
+
 //     try {
 //       const response = await axios.post(
 //         "https://api.web3forms.com/submit",
@@ -30,7 +34,8 @@
 //       );
 //       if (response.data.success) {
 //         toast.success("Message sent successfully");
-//         reset(); 
+//         reset();
+//         setCapVal();
 //       } else {
 //         toast.error("Error: " + response.data.message);
 //       }
@@ -42,8 +47,8 @@
 //   return (
 //     <div className="container py-10 lg:py-16 mt-22">
 //       <div className="bg-neutral text-secondary shadow-xl rounded-xl px-6 py-8 w-full md:w-4/5 lg:w-3/5 mx-auto">
-//         <h1 className="text-2xl font-bold text-center">Contact us</h1>
-//         <p className="w-3/5 text-center leading-5 mb-6 mx-auto">
+//         <h1 className="text-3xl font-bold text-center">Contact us</h1>
+//         <p className="w-3/5 text-sm text-center leading-5 mb-6 mx-auto">
 //           Have a question or feedback? Reach out to us anytime through the
 //           contact form or email. We’ll get back to you as soon as possible
 //         </p>
@@ -88,11 +93,19 @@
 //                   <span className="text-red-500">This field is required</span>
 //                 )}
 //               </div>
-
+//               <ReCAPTCHA
+//                 sitekey="6Ldz_GorAAAAAJ0VQOjtn-Oo4SFVORi2DFaHbeMm"
+//                 onChange={(val) => setCapVal(val)}
+//               />
+ 
+              
 //               <input
 //                 type="submit"
 //                 value="Send Message"
-//                 className="py-2 mt-1 px-4 rounded-md text-md bg-primary w-3/4 text-neutral cursor-pointer transition-all duration-400 hover:bg-primary-hover"
+//                 disabled={!capVal}
+//                 className={`py-2 mt-1 px-4 rounded-md text-md w-3/4 text-neutral cursor-pointer transition-all duration-400 
+//     ${capVal ? "bg-primary hover:bg-primary-hover" : "bg-[#00000070]"}
+//     disabled:cursor-not-allowed`}
 //               />
 //             </form>
 //           </div>
@@ -134,6 +147,14 @@
 
 
 
+
+
+
+
+
+
+
+
 import React, { useState } from "react";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
@@ -141,11 +162,12 @@ import { FaLocationDot } from "react-icons/fa6";
 import Lottie from "lottie-react";
 import loader from "../assets/loader.json";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import { toast } from "react-toastify";
-import HCaptcha from "@hcaptcha/react-hcaptcha";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const Contact = () => {
+  const [capVal, setCapVal] = useState();
+
   const {
     register,
     handleSubmit,
@@ -153,57 +175,40 @@ const Contact = () => {
     formState: { errors },
   } = useForm();
 
-  const [captchaToken, setCaptchaToken] = useState(null);
-  const [captchaError, setCaptchaError] = useState(false);
-
-  const onSubmit = async (data) => {
-    if (!captchaToken) {
-      setCaptchaError(true);
-      return;
-    }
-
-    const userInfo = {
-      access_key: "8dc5053d-d4a7-4579-a205-7fa2a857543a",
-      name: data.name,
-      email: data.email,
-      message: data.message,
-      "h-captcha-response": captchaToken,
-    };
-
-    try {
-      const response = await axios.post("https://api.web3forms.com/submit", userInfo);
-      if (response.data.success) {
-        toast.success("Message sent successfully");
-        reset();
-        setCaptchaToken(null);
-        setCaptchaError(false);
-      } else {
-        toast.error("Error: " + response.data.message);
-      }
-    } catch (error) {
-      toast.error("An error occurred: " + error.message);
-    }
+  const onSubmit = () => {
+    toast.success("Message sent successfully");
+    reset();
+    setCapVal(null);
   };
 
   return (
     <div className="container py-10 lg:py-16 mt-22">
       <div className="bg-neutral text-secondary shadow-xl rounded-xl px-6 py-8 w-full md:w-4/5 lg:w-3/5 mx-auto">
-        <h1 className="text-2xl font-bold text-center">Contact us</h1>
-        <p className="w-3/5 text-center leading-5 mb-6 mx-auto">
+        <h1 className="text-3xl font-bold text-center">Contact us</h1>
+        <p className="w-3/5 text-sm text-center leading-5 mb-6 mx-auto">
           Have a question or feedback? Reach out to us anytime through the
           contact form or email. We’ll get back to you as soon as possible
         </p>
         <div className="flex flex-col md:flex-row ">
           <div className="w-3/5 ">
             <h2 className="font-bold text-xl my-2">Send us a message</h2>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form
+              action="https://api.web3forms.com/submit"
+              method="POST"
+              onSubmit={handleSubmit(onSubmit)}
+            >
+  
+              <input type="hidden" name="access_key" value="8dc5053d-d4a7-4579-a205-7fa2a857543a" />
+
               <div>
                 <input
                   {...register("name", { required: true })}
+                  name="name"
                   className="py-2 px-2 w-3/4 my-2 border-secondary border-[1px] rounded-md"
                   placeholder="Your Name"
                   type="text"
                 />
+                <br />
                 {errors.name && (
                   <span className="text-red-500">This field is required</span>
                 )}
@@ -212,10 +217,12 @@ const Contact = () => {
               <div>
                 <input
                   {...register("email", { required: true })}
+                  name="email"
                   className="py-2 px-2 w-3/4 my-2 border-secondary border-[1px] rounded-md"
                   placeholder="Your Email"
                   type="email"
                 />
+                <br />
                 {errors.email && (
                   <span className="text-red-500">This field is required</span>
                 )}
@@ -224,32 +231,29 @@ const Contact = () => {
               <div>
                 <textarea
                   {...register("message", { required: true })}
+                  name="message"
                   className="resize-none h-32 py-1 px-2 w-3/4 my-2 border-secondary border-[1px] rounded-md"
                   placeholder="Your Message"
                 />
+                <br />
                 {errors.message && (
                   <span className="text-red-500">This field is required</span>
                 )}
               </div>
 
-              <div className="my-2">
-                <HCaptcha
-                  sitekey="your-hcaptcha-site-key-here"
-                  onVerify={setCaptchaToken}
-                  onExpire={() => setCaptchaToken(null)}
-                  theme="light"
-                />
-                {captchaError && (
-                  <span className="text-red-500 text-sm">
-                    Please verify you are human
-                  </span>
-                )}
-              </div>
+              {/* reCAPTCHA */}
+              <ReCAPTCHA
+                sitekey="6Ldz_GorAAAAAJ0VQOjtn-Oo4SFVORi2DFaHbeMm"
+                onChange={(val) => setCapVal(val)}
+              />
 
               <input
                 type="submit"
                 value="Send Message"
-                className="py-2 mt-1 px-4 rounded-md text-md bg-primary w-3/4 text-neutral cursor-pointer transition-all duration-400 hover:bg-primary-hover"
+                disabled={!capVal}
+                className={`py-2 mt-1 px-4 rounded-md text-md w-3/4 text-neutral cursor-pointer transition-all duration-400 
+                ${capVal ? "bg-primary hover:bg-primary-hover" : "bg-[#00000070]"}
+                disabled:cursor-not-allowed`}
               />
             </form>
           </div>
