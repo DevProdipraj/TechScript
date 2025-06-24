@@ -1,7 +1,12 @@
 import React from 'react'
 import Sidebar from '../component/dashbord/Sidebar'
+import { useAuth } from '../context/AuthContext'
 
 const Dashbord = () => {
+
+  const {profile, isAuthenticated} = useAuth()
+console.log(profile)
+console.log(isAuthenticated)
   return (
     <div className='max-w-[1920px] mx-auto'>
       <div className="flex justify-between">
