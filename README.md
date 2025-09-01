@@ -1,1 +1,1 @@
-#Full Stack Blog Application 
+#Full Stack Blog Application using MERN, JWT, Nodemailer 
