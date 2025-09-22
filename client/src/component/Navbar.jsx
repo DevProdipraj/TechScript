@@ -33,7 +33,7 @@ const Navbar = () => {
   return (
     <>
       <div
-        className={`bg-neutral  fixed top-0 left-0 right-0 z-40 shadow-lg transition-transform duration-300 m ${
+        className={` fixed top-0 left-0 right-0 z-40 shadow-sm transition-transform duration-300 ${ showNavbar ? "bg-neutral" : "bg-neutral"}  ${
           showNavbar ? "translate-y-0" : "-translate-y-full"
         }`}
       >
