@@ -10,8 +10,11 @@ const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(true);
   const lastScrollY = useRef(0);
 
+  
+
   // Scroll handler for hide/show navbar on scroll
   useEffect(() => {
+ 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY > lastScrollY.current && currentScrollY > 50) {

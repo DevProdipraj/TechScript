@@ -11,6 +11,9 @@ export const AuthProvider = ({ children }) => {
   const [admins, setAdmins] = useState([]);
   const [profile, setProfile] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const backend_url = import.meta.env.VITE_BACKEND_URL;
+console.log(backend_url);  
+
 
   useEffect(() => {
  
@@ -18,7 +21,7 @@ export const AuthProvider = ({ children }) => {
    const fetchProfile = async () => {
   try {
     const { data } = await axios.get(
-      "http://localhost:3000/api/users/my-profile",
+      `${backend_url}/api/users/my-profile`,
       {
         withCredentials: true,
         headers: {
@@ -39,7 +42,7 @@ export const AuthProvider = ({ children }) => {
     const fetchBlog = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/blog/all-blogs",
+           `${backend_url}/api/blog/all-blogs`,
           { withCredentials: true }
         );
         setBlog(response.data);
@@ -52,7 +55,7 @@ export const AuthProvider = ({ children }) => {
     const fetchAdmin = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/users/admins",
+           `${backend_url}/api/users/admins`,
           { withCredentials: true }
         );
         setAdmins(response.data.admins);

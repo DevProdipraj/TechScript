@@ -3,11 +3,11 @@ import {  getAdmins, getMyProfile, login, logout, register } from "../controller
 import { isAuthenticated } from "../middleware/userAuth.js";
 
 
-export const router = express.Router();
+export const userRouter = express.Router();
 
-router.post("/register", register);
-router.post("/login", login);
-router.get("/logout", isAuthenticated, logout);
-router.get("/my-profile", isAuthenticated, getMyProfile);
-router.get("/admins", getAdmins);
+userRouter.post("/register", register);
+userRouter.post("/login", login);
+userRouter.get("/logout", isAuthenticated, logout);
+userRouter.get("/my-profile", isAuthenticated, getMyProfile);
+userRouter.get("/admins", getAdmins);
 
