@@ -13,10 +13,7 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    //  Get JWT token from cookies
-    // const token = Cookies.get("jwt");
-    // console.log(token)
-
+ 
     //  Fetch user profile
    const fetchProfile = async () => {
   try {

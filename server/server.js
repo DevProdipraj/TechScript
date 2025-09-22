@@ -24,12 +24,16 @@ app.use(express.json());
 app.use(cookieParser());
 
 // CORS configuration
+ 
 app.use(cors({
-  origin: process.env.FRONTEND_URL,   
+  origin: (origin, callback) => {
+    callback(null, origin || '*'); 
+  },
   credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE"]
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
-// console.log(process.env.FRONTEND_URL)
+
+ 
 // File upload middleware
 app.use(fileUpload({
   useTempFiles: true,
